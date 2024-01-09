@@ -18,12 +18,13 @@ function initGranim() {
     states: {
       "default-state": {
         gradients: [
-          ["#3d3d3d", "#F4F1D6"],
-          ["#020202", "#F4F1D6"],
-          ["#3d3d3d", "#4f4f4f"],
-          ["#3d3d3d", "#F4F1D6"],
-          ["#020202", "#F4F1D6"],
-          ["#faf8ec", "#3d3d3d"],
+          ["#0C0F0A", "#ADF6FC"],
+          ["#0C0F0A", "#0C0F0A"],
+          ["#ADF6FC", "#0C0F0A"],
+          ["#0C0F0A", "#ADF6FC"],
+          ["#0C0F0A", "#0C0F0A"],
+          ["#0C0F0A", "#ADF6FC"],
+          ["#0C0F0A", "#0C0F0A"],
         ],
         transitionSpeed: 6000,
       },
