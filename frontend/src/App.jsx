@@ -1,40 +1,36 @@
-import Counter from "./components/Counter";
-
+import { Outlet } from "react-router-dom";
+import Granim from "granim";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello Vite + React !</p>
-
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <Outlet />
     </div>
   );
 }
+
+function initGranim() {
+  return new Granim({
+    element: "#granim_bg",
+    direction: "radial",
+    isPausedWhenNotInView: true,
+    states: {
+      "default-state": {
+        gradients: [
+          ["#3d3d3d", "#F4F1D6"],
+          ["#020202", "#F4F1D6"],
+          ["#3d3d3d", "#4f4f4f"],
+          ["#3d3d3d", "#F4F1D6"],
+          ["#020202", "#F4F1D6"],
+          ["#faf8ec", "#3d3d3d"],
+        ],
+        transitionSpeed: 6000,
+      },
+    },
+  });
+}
+
+initGranim();
 
 export default App;
