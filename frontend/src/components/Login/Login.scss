@@ -1,22 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 :root {
   --primary-color: #ffffff;
   --second-color: #ffffff;
   --black-color: #000000;
-}
-
-body {
-  background-image: url("https://drive.google.com/uc?export=view&id=1uCohtd5e8ZjrZrhykzct1o1DAE9JNVfS");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 a {
@@ -24,8 +9,12 @@ a {
   color: var(--second-color);
 }
 
-a:hover {
-  text-decoration: underline;
+.closeLogin {
+  display: flex;
+  color: white;
+  background: none;
+  justify-content: end;
+  padding: 1rem;
 }
 
 .wrapper {
@@ -57,7 +46,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   background-color: var(--primary-color);
-  width: 140px;
+  width: 190px;
   height: 70px;
   border-radius: 0 0 20px 20px;
 }
@@ -159,6 +148,22 @@ a:hover {
 }
 
 .input-submit:hover {
+  background: #000000;
+}
+
+.input-register {
+  width: 100%;
+  height: 50px;
+  background: #0000008f;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-register:hover {
   background: #000000;
 }
 
