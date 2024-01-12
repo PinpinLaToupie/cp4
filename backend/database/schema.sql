@@ -12,7 +12,6 @@ CREATE TABLE `user` (
   `lastname` varchar(50) NOT NULL,
   `email` varchar(75) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `image` VARCHAR(255), 
   `id_role` INT,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_role`) REFERENCES role(id)
