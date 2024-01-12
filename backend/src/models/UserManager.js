@@ -10,26 +10,10 @@ class UserManager extends AbstractManager {
   // The C of CRUD - Create operation
 
   async create(user) {
-    /**
-     * user est un objet, et il possede les cles
-     * - firstname
-     * - lastname
-     * - email
-     * - password
-     * - image
-     * - id_role
-     */
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, email, password, image, id_role) values (?, ?, ?, ?, ?, ?)`,
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.password,
-        user.image,
-        user.id_role,
-      ]
+      `insert into ${this.table} (firstname, lastname, email, password, id_role) values (?, ?, ?, ?, ?)`,
+      [user.firstname, user.lastname, user.email, user.password, user.id_role]
     );
 
     // Return the ID of the newly inserted item
@@ -74,13 +58,12 @@ class UserManager extends AbstractManager {
   async update(id, user) {
     // Execute the SQL SELECT query to retrieve all items from the "item" table
     const [result] = await this.database.query(
-      `update ${this.table} set firstname=?, lastname=?, email=?, password=?, image=?, id_role=? where id=?`,
+      `update ${this.table} set firstname=?, lastname=?, email=?, password=?, id_role=? where id=?`,
       [
         user.firstname,
         user.lastname,
         user.email,
         user.password,
-        user.image,
         user.id_role,
         id,
       ]

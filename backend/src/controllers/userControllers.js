@@ -61,18 +61,16 @@ const edit = async (req, res, next) => {
 const add = async (req, res, next) => {
   // Extract the user data from the request body
   const user = req.body;
-  let newName = `public/profile/default.png`;
 
   if (req.file !== undefined) {
     const avatar = req.file;
-    newName = `${avatar.destination}/${avatar.filename}-${avatar.originalname}`;
 
-    fs.renameSync(`${avatar.destination}/${avatar.filename}`, newName);
+    fs.renameSync(`${avatar.destination}/${avatar.filename}`);
   }
 
   try {
     // Insert the user into the database
-    const insertId = await tables.user.create(user, newName);
+    const insertId = await tables.user.create(user);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json({ insertId });
@@ -111,20 +109,6 @@ const createUser = async (req, res, next) => {
       return res.status(401).json({ error: "user is already exist" });
     }
 
-    /**
-     * Pour rappel, dans le modele UserManager:
-     *
-     * create(user){...}
-     *
-     * req.body doit FORCÉMENT posseder les cles suivantes :
-     * - firstname
-     * - lastname
-     * - email
-     * - password
-     * - id_role
-     */
-
-    req.body.image = "/profile/default.png";
     const user = await tables.user.create(req.body);
     return res.json({ user });
   } catch (err) {
