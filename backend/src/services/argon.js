@@ -1,17 +1,10 @@
 const argon2 = require("argon2");
 const tables = require("../tables");
 
-const hashingOptions = {
-  type: argon2.argon2id,
-  memoryCost: 19 * 2 ** 10,
-  timeCost: 2,
-  parallelism: 1,
-};
-
 const hashPwd = async (req, res, next) => {
   try {
     console.info(req.body);
-    const hash = await argon2.hash(req.body.password, hashingOptions);
+    const hash = await argon2.hash(req.body.password);
 
     req.body.password = hash;
 

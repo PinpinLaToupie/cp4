@@ -84,7 +84,7 @@ function Home() {
           ref={mountainsBehind}
         />
         <h2 id="text" ref={text}>
-          Moon Light
+          Décollage !
         </h2>
         <a href="#sec" id="btn">
           Go 🚀
