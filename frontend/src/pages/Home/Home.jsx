@@ -75,32 +75,22 @@ function Home() {
       {showLogin && <Login modal={toggleLogin} />}
 
       <section>
+        <img src="./stars.png" id="stars" alt="stars" ref={stars} />
+        <img src="./moon.png" id="moon" alt="moon" ref={moon} />
         <img
-          src="https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh"
-          id="stars"
-          alt="stars"
-          ref={stars}
-        />
-        <img
-          src="https://drive.google.com/uc?export=view&id=11ywlLc0-vbBwuKFVfTX7stDFih0TBiJG"
-          id="moon"
-          alt="moon"
-          ref={moon}
-        />
-        <img
-          src="https://drive.google.com/uc?export=view&id=1A8KUta55RJbL-47_J1_J8L2EVJnzWUJv"
+          src="./moutains_behind.png"
           id="mountains_behind"
           alt="mountains behind"
           ref={mountainsBehind}
         />
         <h2 id="text" ref={text}>
-          Moon Light
+          Décollage !
         </h2>
         <a href="#sec" id="btn">
           Go 🚀
         </a>
         <img
-          src="https://drive.google.com/uc?export=view&id=1sc056mKgpKjv7rBiop8QbPPtF7b8pwtu"
+          src="./mountains_front.png"
           id="mountains_front"
           alt="mountains front"
           ref={mountainsFront}
