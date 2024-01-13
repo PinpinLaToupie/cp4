@@ -1,12 +1,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+
 import "./Login.scss";
 
-function FormLogin({ isLogin, modal }) {
+function FormLogin({ handleFormSwitch, modal }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/api/login", { username, password });
+
+      console.info(response.data);
+      handleFormSwitch(true);
+    } catch (error) {
+      console.error("Erreur lors de la connexion", error);
+    }
+  };
+
   return (
     <div className="wrapper">
       <div className="login_box">
-        <form>
+        <form onSubmit={handleLoginSubmit}>
           <button className="closeLogin" type="button" onClick={modal}>
             <p> X </p>
           </button>
@@ -14,7 +32,14 @@ function FormLogin({ isLogin, modal }) {
             <span> Connexion </span>
           </div>
           <div className="input_box">
-            <input type="text" id="user" className="input-field" required />
+            <input
+              type="text"
+              id="user"
+              className="input-field"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <label htmlFor="user" className="label">
               Pseudo
             </label>
@@ -27,30 +52,17 @@ function FormLogin({ isLogin, modal }) {
               id="password"
               className="input-field"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <label htmlFor="pass" className="label">
+            <label htmlFor="password" className="label">
               Mot de passe
             </label>
             <i className="bx bx-lock-alt icon" />
           </div>
 
-          <div className="remember-forgot">
-            <div className="remember-me">
-              <input type="checkbox" id="remember" />
-              <label htmlFor="remember"> Se souvenir</label>
-            </div>
-
-            <div className="forgot">
-              <a href="/forgot-password">Mot de passe oublié ?</a>
-            </div>
-          </div>
-
           <div className="input_box">
-            <button
-              type="submit"
-              className="input-submit"
-              onClick={() => isLogin(true)}
-            >
+            <button type="submit" className="input-submit">
               Login
             </button>
           </div>
@@ -61,7 +73,7 @@ function FormLogin({ isLogin, modal }) {
               <button
                 type="button"
                 className="input-register"
-                onClick={() => isLogin(false)}
+                onClick={() => handleFormSwitch(false)}
               >
                 Inscription
               </button>
@@ -73,11 +85,39 @@ function FormLogin({ isLogin, modal }) {
   );
 }
 
-function FormRegister({ isLogin, modal }) {
+function FormRegister({ handleFormSwitch, modal }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("/api/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+
+      console.info(response.data);
+      handleFormSwitch(true);
+    } catch (error) {
+      console.error("Erreur lors de l'inscription", error);
+    }
+  };
   return (
     <div className="wrapper">
       <div className="login_box">
-        <form>
+        <form onSubmit={handleRegisterSubmit}>
           <button className="closeLogin" type="button" onClick={modal}>
             <p> X </p>
           </button>
@@ -91,27 +131,40 @@ function FormRegister({ isLogin, modal }) {
               id="firstname"
               className="input-field"
               required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
             <label htmlFor="firstname" className="label">
               Prénom
             </label>
-            <i className="bx bx-user icon" />
           </div>
 
           <div className="input_box">
-            <input type="text" id="lastname" className="input-field" required />
+            <input
+              type="text"
+              id="lastname"
+              className="input-field"
+              required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
             <label htmlFor="lastname" className="label">
               Nom
             </label>
-            <i className="bx bx-user icon" />
           </div>
 
           <div className="input_box">
-            <input type="email" id="email" className="input-field" required />
+            <input
+              type="email"
+              id="email"
+              className="input-field"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <label htmlFor="email" className="label">
               Email
             </label>
-            <i className="bx bx-envelope icon" />
           </div>
 
           <div className="input_box">
@@ -120,11 +173,12 @@ function FormRegister({ isLogin, modal }) {
               id="password"
               className="input-field"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <label htmlFor="password" className="label">
               Mot de passe
             </label>
-            <i className="bx bx-lock icon" />
           </div>
 
           <div className="input_box">
@@ -133,11 +187,12 @@ function FormRegister({ isLogin, modal }) {
               id="confirm-password"
               className="input-field"
               required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <label htmlFor="confirm-password" className="label">
               Confirmer mot de passe
             </label>
-            <i className="bx bx-lock icon" />
           </div>
 
           <div className="register">
@@ -146,7 +201,7 @@ function FormRegister({ isLogin, modal }) {
               <button
                 type="button"
                 className="input-register"
-                onClick={() => isLogin(false)}
+                onClick={() => handleFormSwitch(false)}
               >
                 Inscription
               </button>
@@ -165,7 +220,7 @@ function Login({ closeLogin }) {
     setIsLogin(switchLogin);
   };
 
-  const closeSignUpModal = () => {
+  const handleModalClose = () => {
     closeLogin(false);
   };
 
@@ -173,11 +228,14 @@ function Login({ closeLogin }) {
     <div>
       <div className="modal-overlay">
         {isLogin ? (
-          <FormLogin isLogin={handleClickRegister} modal={closeSignUpModal} />
+          <FormLogin
+            handleFormSwitch={handleClickRegister}
+            modal={handleModalClose}
+          />
         ) : (
           <FormRegister
-            isLogin={handleClickRegister}
-            modal={closeSignUpModal}
+            handleFormSwitch={handleClickRegister}
+            modal={handleModalClose}
           />
         )}
       </div>
@@ -186,12 +244,12 @@ function Login({ closeLogin }) {
 }
 
 FormRegister.propTypes = {
-  isLogin: PropTypes.bool.isRequired,
+  handleFormSwitch: PropTypes.func.isRequired,
   modal: PropTypes.func.isRequired,
 };
 
 FormLogin.propTypes = {
-  isLogin: PropTypes.bool.isRequired,
+  handleFormSwitch: PropTypes.func.isRequired,
   modal: PropTypes.func.isRequired,
 };
 
