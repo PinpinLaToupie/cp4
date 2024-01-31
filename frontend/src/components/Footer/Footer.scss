@@ -1,0 +1,39 @@
+.footer {
+  background-color: #1c052296;
+  color: rgb(255, 255, 255);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  grid-row: auto;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  @media (max-width: 767px) {
+    .footer-bar {
+      font-size: 12px;
+    }
+  }
+}
+
+.gif-button {
+  background-color: transparent;
+  border-radius: 10%;
+  padding: 0;
+  cursor: pointer;
+  position: static;
+  margin: 10px;
+}
+
+.gif-image {
+  width: 2vw;
+  height: auto;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .gif-image {
+    transform: scale(2);
+    transform-origin: 0 0;
+  }
+}

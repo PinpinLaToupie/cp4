@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Home.scss";
-import Login from "../../components/Login/Login";
 
 function Home() {
   const stars = useRef(null);
@@ -10,12 +9,6 @@ function Home() {
   const btn = useRef(null);
   const mountainsFront = useRef(null);
   const header = useRef(null);
-
-  const [showLogin, setShowLogin] = useState(false);
-
-  const toggleLogin = () => {
-    setShowLogin(!showLogin);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,36 +37,6 @@ function Home() {
 
   return (
     <div>
-      <header>
-        <a href="/" className="logo">
-          Cosmo Nomade
-        </a>
-        <ul>
-          <li>
-            <a href="/" className="active">
-              Home
-            </a>
-          </li>
-          <li>
-            <button type="button" className="active" onClick={toggleLogin}>
-              Compte
-            </button>
-          </li>
-          <li>
-            <a href="/voyage" className="active">
-              Voyage
-            </a>
-          </li>
-          <li>
-            <a href="/galerie" className="active">
-              Galerie
-            </a>
-          </li>
-        </ul>
-      </header>
-
-      {showLogin && <Login modal={toggleLogin} />}
-
       <section>
         <img src="./stars.png" id="stars" alt="stars" ref={stars} />
         <img src="./moon.png" id="moon" alt="moon" ref={moon} />

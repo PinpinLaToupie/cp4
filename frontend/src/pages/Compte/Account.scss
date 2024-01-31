@@ -1,0 +1,184 @@
+@import url("https://fonts.google.com/specimen/Montserrat");
+
+.main-content {
+  padding-top: 85px;
+}
+
+.h1-myAccount,
+.h2-myAccount,
+.h3-myAccount {
+  color: #ffffff;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h1-myAccount {
+  font-size: 2rem;
+}
+.h2-myAccount {
+  font-size: 1.5rem;
+}
+.h3-myAccount {
+  font-size: 1rem;
+}
+.h2-myAccount,
+.h3-myAccount {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  border: thick double #ffffff;
+  border-radius: 8px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #2b1055;
+    z-index: -1;
+  }
+}
+
+.table-myAccount-users {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2b1055;
+  overflow-x: auto;
+
+  th,
+  td {
+    border: 1px solid #2b1055;
+    padding: 8px;
+    color: #8c829d;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+}
+
+.table-myAccount {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  overflow-x: auto;
+
+  th,
+  td {
+    border: 1px solid #2b1055;
+    padding: 8px;
+    color: #2b1055;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+}
+
+.button-myAccount {
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 50%;
+
+  &:hover {
+    background-color: #2b1055;
+    color: rgb(0, 0, 0);
+  }
+}
+
+.button-role {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-myAccount {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #2b10558a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: thick double #ffffff;
+  border-radius: 8px;
+
+  div {
+    margin-bottom: 0.2rem;
+  }
+
+  input,
+  select {
+    width: 50%;
+    padding: 2px;
+    margin: 0.5rem;
+    border: 1px solid #ffffff;
+    font-size: 1rem;
+    color: #2b1055;
+    background-color: white;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border-color: #2b1055;
+      box-shadow: 0 0 8px rgba(244, 241, 214, 0.6);
+    }
+  }
+
+  .button-add-container {
+    margin-left: 10rem;
+    align-items: center;
+  }
+
+  .button-add {
+    color: #2b1055;
+    cursor: pointer;
+    width: 30%;
+    padding: 5px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: #2a105521;
+      color: rgb(255, 255, 255);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .h1-myAccount,
+  .h2-myAccount,
+  .h3-myAccount {
+    font-size: smaller;
+  }
+
+  .form-myAccount input,
+  .button-add {
+    width: 100%;
+  }
+
+  .form-myAccount {
+    width: 82%;
+  }
+
+  th,
+  td {
+    width: 100%;
+  }
+
+  .table-myAccount-users {
+    font-size: 10px;
+  }
+
+  .button-role {
+    width: 60%;
+    padding: 3px 3px;
+    margin: 1px;
+    margin-top: 7px;
+  }
+}
