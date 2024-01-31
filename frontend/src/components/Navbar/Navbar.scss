@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
+}
+
+header .logo {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+header ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul li {
+  list-style: none;
+  margin-left: 20px;
+}
+
+header ul li a {
+  text-decoration: none;
+  padding: 6px 15px;
+  color: #fff;
+  border-radius: 20px;
+}
+
+header ul li a:hover,
+header ul li a.active {
+  background: #ffffff8a;
+  color: #2b1055;
+}
+
+header ul li a.active:hover {
+  background-color: #fff;
+  color: #2b1055;
+}
+
+button {
+  text-decoration: none;
+  padding: 6px 15px;
+  color: #fff;
+  border-radius: 20px;
+}
+
+button.active {
+  background: #ffffff8a;
+  color: #2b1055;
+}
+
+button.active:hover {
+  background-color: #fff;
+  color: #2b1055;
+}
+
+.burger-menu {
+  position: absolute;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  z-index: 100000000;
+}
+
+.burger-menu div {
+  display: block;
+  margin-right: 5rem;
+  width: 2rem;
+  height: 0.25rem;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.burger-menu.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 767px) {
+  .burger-menu {
+    display: flex;
+  }
+
+  .iconListe {
+    margin-top: 21rem;
+    display: none;
+    flex-direction: column;
+    z-index: 10000;
+  }
+
+  .iconListe.show {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.703);
+    width: auto;
+    margin-right: 1px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 32px;
+  }
+}

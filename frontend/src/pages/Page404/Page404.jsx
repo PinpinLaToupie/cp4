@@ -1,71 +1,62 @@
-import { useEffect } from "react";
-import Parallax from "parallax-js";
-import "./Page404.scss";
+import React from "react";
 import { Link } from "react-router-dom";
+import "./Page404.scss";
 
-function ErrorPage() {
-  useEffect(() => {
-    const scene = document.getElementById("scene");
-    const parallax = new Parallax(scene);
-
-    return () => {
-      parallax.disable();
-    };
-  }, []);
+function Page404() {
   return (
-    <div className="errorPage">
-      <section className="wrapper">
-        <div className="container">
-          <div id="scene" className="scene" data-hover-only="false">
-            <div className="circle" data-depth="1.2">
-              {" "}
-            </div>
-
-            <div className="one" data-depth="0.9">
-              <div className="content">
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-              </div>
-            </div>
-
-            <div className="two" data-depth="0.60">
-              <div className="content">
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-              </div>
-            </div>
-
-            <div className="three" data-depth="0.40">
-              <div className="content">
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-                <span className="piece"> </span>
-              </div>
-            </div>
-
-            <p className="p404" data-depth="0.50">
-              404
-            </p>
-            <p className="p404" data-depth="0.10">
-              404
-            </p>
+    <div className="bg-purple">
+      <div className="stars">
+        <div className="central-body">
+          <img
+            className="image-404"
+            src="http://salehriaz.com/404Page/img/404.svg"
+            width="300px"
+            alt="404"
+          />
+          <Link to="/" className="btn-go-home">
+            <button type="button">Go to home !</button>
+          </Link>
+        </div>
+        <div className="objects">
+          <img
+            className="object_rocket"
+            src="http://salehriaz.com/404Page/img/rocket.svg"
+            width="40px"
+            alt="Rocket"
+          />
+          <div className="earth-moon">
+            <img
+              className="object_earth"
+              src="http://salehriaz.com/404Page/img/earth.svg"
+              width="100px"
+              alt="Earth"
+            />
+            <img
+              className="object_moon"
+              src="http://salehriaz.com/404Page/img/moon.svg"
+              width="80px"
+              alt="Moon"
+            />
           </div>
-
-          <div className="text">
-            <article>
-              <p>Zot la perdi chemin ! La page zot i cherche,</p>
-              <p>li la envolé comme un papangue dans le ciel !</p>
-              <Link to="/">
-                <button type="button">Go a la case !</button>
-              </Link>
-            </article>
+          <div className="box_astronaut">
+            <img
+              className="object_astronaut"
+              src="http://salehriaz.com/404Page/img/astronaut.svg"
+              width="140px"
+              alt="Astronaut"
+            />
           </div>
         </div>
-      </section>
+        <div className="glowing_stars">
+          <div className="star" />
+          <div className="star" />
+          <div className="star" />
+          <div className="star" />
+          <div className="star" />
+        </div>
+      </div>
     </div>
   );
 }
 
-export default ErrorPage;
+export default Page404;

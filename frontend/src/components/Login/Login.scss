@@ -1,12 +1,38 @@
-:root {
-  --primary-color: #ffffff;
-  --second-color: #ffffff;
-  --black-color: #000000;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  z-index: 100;
 }
 
-a {
-  text-decoration: none;
-  color: var(--second-color);
+.btn2 {
+  margin: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 0.4rem;
+  background-color: #171717;
+  border-radius: 25px;
+  transition: 0.4s ease-in-out;
+}
+
+.heading {
+  text-align: center;
+  margin: 1rem;
+  color: rgb(255, 255, 255);
+  font-size: 1.2rem;
 }
 
 .closeLogin {
@@ -16,171 +42,87 @@ a {
   justify-content: end;
   padding: 1rem;
 }
-
-.wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.login_box {
-  position: relative;
-  width: 450px;
-  backdrop-filter: blur(25px);
-  border: 2px solid var(--primary-color);
-  border-radius: 15px;
-  padding: 7.5em 2.5em 4em 2.5em;
-  color: var(--second-color);
-  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
-}
-
-.login-header {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+.field {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-color);
-  width: 190px;
-  height: 70px;
-  border-radius: 0 0 20px 20px;
+  gap: 0.5rem;
+  border-radius: 25px;
+  padding: 0.6rem;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #171717;
+  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
-.login-header span {
-  font-size: 30px;
-  color: var(--black-color);
-}
-
-.login-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -30px;
-  width: 30px;
-  height: 30px;
-  border-top-right-radius: 50%;
-  background: transparent;
-  box-shadow: 15px 0 0 0 var(--primary-color);
-}
-
-.login-header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -30px;
-  width: 30px;
-  height: 30px;
-  border-top-left-radius: 50%;
-  background: transparent;
-  box-shadow: -15px 0 0 0 var(--primary-color);
-}
-
-.input_box {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
+.input-icon {
+  height: 1.3rem;
+  width: 1.3rem;
+  fill: white;
 }
 
 .input-field {
-  width: 100%;
-  height: 55px;
-  font-size: 16px;
-  background: transparent;
-  color: var(--second-color);
-  padding-inline: 20px 50px;
-  border: 2px solid var(--primary-color);
-  border-radius: 30px;
+  background: none;
+  border: none;
   outline: none;
+  width: 100%;
+  color: #d3d3d3;
 }
 
-#user {
-  margin-bottom: 10px;
-}
-
-.label {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  transition: 0.2s;
-}
-
-.input-field:focus ~ .label,
-.input-field:valid .label {
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  font-size: 14px;
-  background-color: var(--primary-color);
-  border-radius: 30px;
-  color: var(--black-color);
-  padding: 0 10px;
-}
-
-.icon {
-  position: absolute;
-  top: 18px;
-  right: 25px;
-  font-size: 20px;
-}
-
-.remember-forgot {
+.form .btn {
   display: flex;
-  justify-content: space-between;
-  font-size: 15px;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 2.5rem;
 }
 
-.input-submit {
-  width: 100%;
-  height: 50px;
-  background: #0000008f;
-  font-size: 16px;
-  font-weight: 500;
+.button1 {
+  padding: 0.5em;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  border-radius: 5px;
+  margin-right: 1rem;
   border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  background-color: #252525;
+  color: white;
 }
 
-.input-submit:hover {
-  background: #000000;
+.button1:hover {
+  background-color: black;
+  color: white;
 }
 
-.input-register {
-  width: 100%;
-  height: 50px;
-  background: #0000008f;
-  font-size: 16px;
-  font-weight: 500;
+.button2 {
+  padding: 0.5rem;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+  border-radius: 5px;
   border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  background-color: #252525;
+  color: white;
 }
 
-.input-register:hover {
-  background: #000000;
+.button2:hover {
+  background-color: black;
+  color: white;
 }
 
-.register {
-  text-align: center;
-}
-
-.register a {
-  font-weight: 500;
-}
-
-@media only screen and (max-width: 564px) {
-  .wrapper {
-    padding: 20px;
+@media (max-width: 768px) {
+  .btn2 {
+    margin: 0.5rem;
   }
 
-  .login_box {
-    padding: 7.5em 1.5em 4em 1.5em;
+  .form {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .heading {
+    font-size: 1rem;
   }
 }

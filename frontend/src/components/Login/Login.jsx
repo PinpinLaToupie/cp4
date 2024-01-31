@@ -1,211 +1,295 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Instance from "../../services/axios";
+
+import { useUser } from "../../Contexts/UserContext";
 
 import "./Login.scss";
 
-function FormLogin({ handleFormSwitch, modal }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function FormRegister({ isLogin, modal }) {
+  const [register, setRegister] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const handleLoginSubmit = async (e) => {
+  const hChange = (e) => {
+    setRegister({ ...register, [e.target.name]: e.target.value });
+  };
+
+  const hSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post("/api/login", { username, password });
-
-      console.info(response.data);
-      handleFormSwitch(true);
-    } catch (error) {
-      console.error("Erreur lors de la connexion", error);
-    }
+    Instance.post("/register", register)
+      .then((res) => {
+        if (res.status === 200) {
+          isLogin(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
-    <div className="wrapper">
-      <div className="login_box">
-        <form onSubmit={handleLoginSubmit}>
-          <button className="closeLogin" type="button" onClick={modal}>
-            <p> X </p>
-          </button>
-          <div className="login-header">
-            <span> Connexion </span>
-          </div>
-          <div className="input_box">
-            <input
-              type="text"
-              id="user"
-              className="input-field"
-              required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <label htmlFor="user" className="label">
-              Pseudo
-            </label>
-            <i className="bx bx-user icon" />
-          </div>
-
-          <div className="input_box">
-            <input
-              type="password"
-              id="password"
-              className="input-field"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label htmlFor="password" className="label">
-              Mot de passe
-            </label>
-            <i className="bx bx-lock-alt icon" />
-          </div>
-
-          <div className="input_box">
-            <button type="submit" className="input-submit">
-              Login
+    <div className="field">
+      <div>
+        <div className="modal-overlay">
+          <form className="form" onSubmit={hSubmit}>
+            <button className="closeLogin" type="button" onClick={modal}>
+              <p> X </p>
             </button>
-          </div>
+            <p className="heading">Inscription</p>
+            <div className="field">
+              <svg
+                className="input-icon"
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="16px"
+                height="16px"
+                viewBox="0 0 50 50"
+                fill="white"
+              >
+                {" "}
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                  d="M 21.5,2.5 C 29.1495,1.65036 34.1495,4.81702 36.5,12C 36.094,18.3705 34.4273,24.3705 31.5,30C 31.7591,31.2613 32.4258,32.2613 33.5,33C 36.5833,34.1392 39.5833,35.4725 42.5,37C 44.5744,39.3016 45.9077,41.9683 46.5,45C 32.5,45.6667 18.5,45.6667 4.5,45C 5.09231,41.9683 6.42565,39.3016 8.5,37C 12.232,35.5393 15.732,33.7059 19,31.5C 17.0747,26.4527 15.908,21.1194 15.5,15.5C 14.0907,9.32811 16.0907,4.99478 21.5,2.5 Z M 22.5,5.5 C 32.2038,5.32049 35.2038,9.65382 31.5,18.5C 31.8333,19.1667 32.1667,19.8333 32.5,20.5C 25.4721,30.1208 27.8054,36.2874 39.5,39C 40.6872,40.0195 41.6872,41.1861 42.5,42.5C 31.1667,43.8333 19.8333,43.8333 8.5,42.5C 9.31277,41.1861 10.3128,40.0195 11.5,39C 23.1946,36.2874 25.5279,30.1208 18.5,20.5C 19.0805,18.1127 19.0805,15.6127 18.5,13C 17.9574,9.4027 19.2908,6.9027 22.5,5.5 Z"
+                />
+              </svg>
+              <input
+                name="firstname"
+                autoComplete="off"
+                placeholder="Prénom"
+                className="input-field"
+                type="text"
+                onChange={hChange}
+              />
+            </div>
+            <div className="field">
+              <svg
+                className="input-icon"
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="16px"
+                height="16px"
+                viewBox="0 0 50 50"
+                fill="white"
+              >
+                {" "}
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#ffffff"
+                  d="M 21.5,2.5 C 29.1495,1.65036 34.1495,4.81702 36.5,12C 36.094,18.3705 34.4273,24.3705 31.5,30C 31.7591,31.2613 32.4258,32.2613 33.5,33C 36.5833,34.1392 39.5833,35.4725 42.5,37C 44.5744,39.3016 45.9077,41.9683 46.5,45C 32.5,45.6667 18.5,45.6667 4.5,45C 5.09231,41.9683 6.42565,39.3016 8.5,37C 12.232,35.5393 15.732,33.7059 19,31.5C 17.0747,26.4527 15.908,21.1194 15.5,15.5C 14.0907,9.32811 16.0907,4.99478 21.5,2.5 Z M 22.5,5.5 C 32.2038,5.32049 35.2038,9.65382 31.5,18.5C 31.8333,19.1667 32.1667,19.8333 32.5,20.5C 25.4721,30.1208 27.8054,36.2874 39.5,39C 40.6872,40.0195 41.6872,41.1861 42.5,42.5C 31.1667,43.8333 19.8333,43.8333 8.5,42.5C 9.31277,41.1861 10.3128,40.0195 11.5,39C 23.1946,36.2874 25.5279,30.1208 18.5,20.5C 19.0805,18.1127 19.0805,15.6127 18.5,13C 17.9574,9.4027 19.2908,6.9027 22.5,5.5 Z"
+                />
+              </svg>
+              <input
+                name="lastname"
+                autoComplete="off"
+                placeholder="NOM"
+                className="input-field"
+                type="text"
+                onChange={hChange}
+              />
+            </div>
+            <div className="field">
+              <svg
+                className="input-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z">
+                  {" "}
+                </path>
+              </svg>
+              <input
+                name="email"
+                autoComplete="off"
+                placeholder="Email"
+                className="input-field"
+                type="text"
+                onChange={hChange}
+              />
+            </div>
+            <div className="field">
+              <svg
+                className="input-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z">
+                  {" "}
+                </path>
+              </svg>
+              <input
+                name="password"
+                placeholder="Mot de passe"
+                className="input-field"
+                type="password"
+                onChange={hChange}
+              />
+            </div>
+            <div className="field">
+              <svg
+                className="input-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z">
+                  {" "}
+                </path>
+              </svg>
+              <input
+                name="confirmPassword"
+                onChange={hChange}
+                placeholder="Confirmer mot de passe"
+                className="input-field"
+                type="password"
+              />
+            </div>
+            {register.password !== register.confirmPassword ? (
+              <div className="errormessage">
+                Les mots de passe ne correspondent pas
+              </div>
+            ) : (
+              ""
+            )}
 
-          <div className="register">
-            <span>
-              Vous n'avez pas de compte ?
+            <div className="btn2">
               <button
                 type="button"
-                className="input-register"
-                onClick={() => handleFormSwitch(false)}
+                className="button1"
+                onClick={() => isLogin(true)}
+              >
+                Connexion
+              </button>
+
+              <button
+                type="submit"
+                className="button2"
+                onClick={() => isLogin(false)}
               >
                 Inscription
               </button>
-            </span>
-          </div>
-        </form>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
 }
 
-function FormRegister({ handleFormSwitch, modal }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+function FormLogin({ isLogin, modal }) {
+  const nav = useNavigate();
 
-  const handleRegisterSubmit = async (e) => {
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const hChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const { setUser } = useUser();
+  const hSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Les mots de passe ne correspondent pas.");
-      return;
-    }
-
-    try {
-      const response = await axios.post("/api/register", {
-        firstName,
-        lastName,
-        email,
-        password,
+    Instance.post("/login", login)
+      .then((res) => {
+        setUser(res.data.user);
+        modal();
+        nav("/moncompte");
+      })
+      .catch((err) => {
+        console.error(err);
       });
-
-      console.info(response.data);
-      handleFormSwitch(true);
-    } catch (error) {
-      console.error("Erreur lors de l'inscription", error);
-    }
   };
+
   return (
-    <div className="wrapper">
-      <div className="login_box">
-        <form onSubmit={handleRegisterSubmit}>
+    <div className="field">
+      <div className="modal-overlay">
+        <form className="form" onSubmit={hSubmit}>
           <button className="closeLogin" type="button" onClick={modal}>
             <p> X </p>
           </button>
-          <div className="login-header">
-            <span> Inscription </span>
-          </div>
-
-          <div className="input_box">
+          <p className="heading">Connexion</p>
+          <div className="field">
+            <svg
+              className="input-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z">
+                {" "}
+              </path>
+            </svg>
             <input
+              autoComplete="off"
+              placeholder="Identifiant"
+              className="input-field"
               type="text"
-              id="firstname"
-              className="input-field"
-              required
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              name="email"
+              onChange={hChange}
             />
-            <label htmlFor="firstname" className="label">
-              Prénom
-            </label>
           </div>
-
-          <div className="input_box">
+          <div className="field">
+            <svg
+              className="input-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z">
+                {" "}
+              </path>
+            </svg>
             <input
-              type="text"
-              id="lastname"
+              placeholder="Mot de passe"
               className="input-field"
-              required
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <label htmlFor="lastname" className="label">
-              Nom
-            </label>
-          </div>
-
-          <div className="input_box">
-            <input
-              type="email"
-              id="email"
-              className="input-field"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor="email" className="label">
-              Email
-            </label>
-          </div>
-
-          <div className="input_box">
-            <input
               type="password"
-              id="password"
-              className="input-field"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              onChange={hChange}
             />
-            <label htmlFor="password" className="label">
-              Mot de passe
-            </label>
           </div>
-
-          <div className="input_box">
-            <input
-              type="password"
-              id="confirm-password"
-              className="input-field"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            <label htmlFor="confirm-password" className="label">
-              Confirmer mot de passe
-            </label>
-          </div>
-
-          <div className="register">
-            <span>
-              Vous n'avez pas de compte ?
-              <button
-                type="button"
-                className="input-register"
-                onClick={() => handleFormSwitch(false)}
-              >
-                Inscription
-              </button>
-            </span>
+          <div className="btn2">
+            <button
+              type="submit"
+              className="button1"
+              onClick={() => isLogin(true)}
+            >
+              Connexion
+            </button>
+            <button
+              type="submit"
+              className="button2"
+              onClick={() => isLogin(false)}
+            >
+              Inscription
+            </button>
           </div>
         </form>
       </div>
@@ -220,7 +304,7 @@ function Login({ closeLogin }) {
     setIsLogin(switchLogin);
   };
 
-  const handleModalClose = () => {
+  const closeSignUpModal = () => {
     closeLogin(false);
   };
 
@@ -228,14 +312,11 @@ function Login({ closeLogin }) {
     <div>
       <div className="modal-overlay">
         {isLogin ? (
-          <FormLogin
-            handleFormSwitch={handleClickRegister}
-            modal={handleModalClose}
-          />
+          <FormLogin isLogin={handleClickRegister} modal={closeSignUpModal} />
         ) : (
           <FormRegister
-            handleFormSwitch={handleClickRegister}
-            modal={handleModalClose}
+            isLogin={handleClickRegister}
+            modal={closeSignUpModal}
           />
         )}
       </div>
@@ -244,12 +325,12 @@ function Login({ closeLogin }) {
 }
 
 FormRegister.propTypes = {
-  handleFormSwitch: PropTypes.func.isRequired,
+  isLogin: PropTypes.func.isRequired,
   modal: PropTypes.func.isRequired,
 };
 
 FormLogin.propTypes = {
-  handleFormSwitch: PropTypes.func.isRequired,
+  isLogin: PropTypes.func.isRequired,
   modal: PropTypes.func.isRequired,
 };
 
