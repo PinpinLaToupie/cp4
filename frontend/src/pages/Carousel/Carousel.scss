@@ -50,9 +50,12 @@
 .h1-galery {
   color: white;
   position: absolute;
+  justify-content: center;
+  align-items: center;
   padding: 100px;
   bottom: 25rem;
   text-align: center;
+  margin: 1rem;
 }
 
 @for $i from 1 through 30 {

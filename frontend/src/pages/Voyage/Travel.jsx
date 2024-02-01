@@ -85,14 +85,6 @@ function Travel() {
           sommeil, pour une immersion totale.
         </p>
         <br />
-        <h3>Témoignages Vivants</h3>
-        <p>
-          Lisez les récits inspirants de ceux qui ont déjà voyagé avec nous.
-          Découvrez à travers leurs yeux ce que signifie réellement partir à la
-          conquête de la Lune, les découvertes faites et les émotions vécues
-          lors de cette aventure hors du commun.
-        </p>
-        <br />
         <h3>FAQ et Informations Pratiques</h3>
         <p>
           Vous avez des questions ? Nous avons des réponses. De la sécurité des
