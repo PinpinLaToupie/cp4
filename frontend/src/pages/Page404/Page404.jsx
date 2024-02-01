@@ -14,7 +14,9 @@ function Page404() {
             alt="404"
           />
           <Link to="/" className="btn-go-home">
-            <button type="button">Go to home !</button>
+            <button type="button" className="btn-go">
+              Home 🚀
+            </button>
           </Link>
         </div>
         <div className="objects">

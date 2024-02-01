@@ -13,7 +13,14 @@ function MyAccount() {
     navigate("/");
   }
 
-  return <div>{user.id_role === 1 ? <Admin /> : <User />}</div>;
+  return (
+    <div>
+      <section className="stars2">
+        <img src="./stars.png" alt="stars" />
+      </section>
+      {user.id_role === 1 ? <Admin /> : <User />}
+    </div>
+  );
 }
 
 export default MyAccount;

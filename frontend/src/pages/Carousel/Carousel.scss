@@ -47,6 +47,14 @@
   }
 }
 
+.h1-galery {
+  color: white;
+  position: absolute;
+  padding: 100px;
+  bottom: 25rem;
+  text-align: center;
+}
+
 @for $i from 1 through 30 {
   #btn#{$i}:checked {
     & ~ .img#{$i} {
@@ -57,16 +65,29 @@
   }
 }
 
+.stars2 {
+  position: absolute;
+  z-index: -1;
+  right: 1rem;
+}
+
 @media screen and (max-width: 768px) {
   .box-galery {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .main-galerie {
-    margin-top: 25vh;
+    margin-top: 30vh;
+    margin-left: 0;
+    z-index: -1;
   }
   .gallery-item {
     &.selected {
       grid-column: span 2;
     }
+  }
+  .h1-galery {
+    font-size: 2rem;
+    right: 1rem;
+    margin-bottom: 1rem;
   }
 }
