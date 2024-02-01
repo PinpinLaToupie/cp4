@@ -44,8 +44,12 @@ function Carousel() {
 
   return (
     <div className="main-galerie">
+      <section className="stars2">
+        <img src="./stars.png" alt="stars" />
+      </section>
       <div className="frame">
         <div className="box-galery">
+          <h1 className="h1-galery">Bienvenue sur la galerie</h1>
           {images.map((image, index) => {
             const imageId = `tableau${index + 1}`;
             return (

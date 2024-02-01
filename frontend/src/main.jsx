@@ -8,6 +8,7 @@ import Page404 from "./pages/Page404/Page404";
 import Home from "./pages/Home/Home";
 import Carousel from "./pages/Carousel/Carousel";
 import Compte from "./pages/Compte/Account";
+import Voyage from "./pages/Voyage/Travel";
 
 import App from "./App";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/moncompte",
         element: <Compte />,
+      },
+      {
+        path: "/voyage",
+        element: <Voyage />,
       },
     ],
   },

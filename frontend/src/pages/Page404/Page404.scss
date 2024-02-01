@@ -129,6 +129,10 @@
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
 }
 
+.btn-go {
+  color: #000000;
+}
+
 .central-body {
   width: 100%;
   padding: 17% 5% 10% 5%;
@@ -146,7 +150,7 @@
   transform: translateX(-50px);
   top: 75%;
   pointer-events: none;
-  animation: rocket-movement 200s linear infinite both running;
+  animation: rocket-movement 10s linear infinite both running;
 }
 
 .object_earth {

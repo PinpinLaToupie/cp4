@@ -46,18 +46,17 @@
 .table-myAccount-users {
   width: 100%;
   border-collapse: collapse;
-  background-color: #2b1055;
+  background-color: #2d1a4c;
   overflow-x: auto;
 
   th,
   td {
-    border: 1px solid #2b1055;
     padding: 8px;
-    color: #8c829d;
+    color: white;
   }
 
   tr:nth-child(even) {
-    background-color: #ffffff;
+    background-color: #93ade3;
   }
 }
 
