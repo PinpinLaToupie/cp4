@@ -1,7 +1,7 @@
 @import url("https://fonts.google.com/specimen/Montserrat");
 
 .main-content {
-  padding-top: 85px;
+  padding-top: 88px;
 }
 
 .h1-myAccount,
@@ -79,6 +79,9 @@
 }
 
 .button-myAccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px 5px;
   border: none;
   border-radius: 5px;
@@ -150,10 +153,13 @@
 }
 
 @media screen and (max-width: 600px) {
-  .h1-myAccount,
   .h2-myAccount,
   .h3-myAccount {
     font-size: smaller;
+  }
+
+  .h1-myAccount {
+    font-size: 1.5rem;
   }
 
   .form-myAccount input,
@@ -162,22 +168,24 @@
   }
 
   .form-myAccount {
-    width: 82%;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table-myAccount-users th,
+  .table-myAccount-users td {
+    padding: 7px;
+    font-size: 0.6rem;
   }
 
-  th,
-  td {
-    width: 100%;
-  }
-
-  .table-myAccount-users {
-    font-size: 10px;
-  }
-
-  .button-role {
-    width: 60%;
+  .button-myAccount {
+    margin-left: 0.6rem;
     padding: 3px 3px;
-    margin: 1px;
-    margin-top: 7px;
+  }
+
+  .button-role select {
+    width: auto;
+    font-size: 0.8rem;
   }
 }
