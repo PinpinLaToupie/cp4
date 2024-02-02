@@ -1,15 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  padding: 15px 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 10000;
+}
+
+.logo {
+  position: absolute;
+  margin-top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5000;
 }
 
 header .logo {
@@ -67,17 +75,55 @@ button.active:hover {
   color: #2b1055;
 }
 
+.burger-menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+}
+
+.iconListe {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.burger-menu div {
+  margin: 0.2rem;
+  display: block;
+  margin-right: 5rem;
+  width: 2rem;
+  height: 0.25rem;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.burger-menu.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.open div:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 @media (max-width: 767px) {
   header {
     padding: 15px 20px;
-  }
-
-  header ul {
-    flex-direction: column;
-    position: absolute;
-    top: 60%;
-    left: 35%;
-    width: 100%;
   }
 
   header ul li {
@@ -89,5 +135,30 @@ button.active:hover {
     display: block;
     width: 100%;
     text-align: center;
+  }
+
+  .logo {
+    margin-top: 4rem;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .iconListe {
+    display: none;
+    flex-direction: column;
+    z-index: 10000;
+  }
+
+  .iconListe.show {
+    display: flex;
+    flex-direction: column;
+    background-color: #2a105528;
+    width: auto;
+    margin-right: 1px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 32px;
   }
 }

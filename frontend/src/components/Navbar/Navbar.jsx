@@ -9,11 +9,16 @@ function Navbar() {
   const { user, setUser } = useUser();
   const nav = useNavigate();
   const [openLogin, setOpenLogin] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   const hLogout = () => {
     Instance.delete("/logout");
     setUser(null);
     nav("/");
+    closeMenu();
   };
 
   const hAccountClick = () => {
@@ -22,9 +27,8 @@ function Navbar() {
     } else {
       setOpenLogin(true);
     }
+    closeMenu();
   };
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,11 +43,11 @@ function Navbar() {
   return (
     <div>
       <header>
-        <NavLink to="/" className="logo">
+        <NavLink to="/" className="logo" onClick={closeMenu}>
           Cosmo Nomade
         </NavLink>
         <div
-          className={`{isMenuOpen ? "open" : ""}`}
+          className={`burger-menu ${isMenuOpen ? "open" : ""}`}
           onClick={toggleMenu}
           onKeyDown={(e) => handleKeyDown(e, toggleMenu)}
           role="button"
@@ -54,19 +58,19 @@ function Navbar() {
           <div> </div>
           <div> </div>
         </div>
-        <ul>
+        <ul className={`iconListe ${isMenuOpen ? "show" : ""}`}>
           <li>
-            <NavLink to="/" className="active">
+            <NavLink to="/" className="active" onClick={closeMenu}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/voyage" className="active">
+            <NavLink to="/voyage" className="active" onClick={closeMenu}>
               Voyage
             </NavLink>
           </li>
           <li>
-            <NavLink to="/carousel" className="active">
+            <NavLink to="/carousel" className="active" onClick={closeMenu}>
               Galerie
             </NavLink>
           </li>
